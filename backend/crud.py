@@ -18,6 +18,7 @@ def get_task(db: Session, task_id: int):
 def create_task(db: Session, task: schemas.TaskCreate):
     new_task = models.Task(
         title=task.title,
+        description=task.description,
         completed=task.completed
     )
 
@@ -38,11 +39,12 @@ def update_task(
     if task is None:
         return None
 
-    if updated_task.title is not None:
-        task.title = updated_task.title
+    update_data = updated_task.model_dump(
+        exclude_unset=True
+    )
 
-    if updated_task.completed is not None:
-        task.completed = updated_task.completed
+    for field, value in update_data.items():
+        setattr(task, field, value)
 
     db.commit()
     db.refresh(task)
