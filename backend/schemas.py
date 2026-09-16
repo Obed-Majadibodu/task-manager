@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
 class TaskCreate(BaseModel):
@@ -56,3 +56,29 @@ class TaskResponse(BaseModel):
     model_config = {
         "from_attributes": True
     }
+
+class UserCreate(BaseModel):
+    email: EmailStr
+    password: str = Field(
+        min_length=8,
+        max_length=128
+    )
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: EmailStr
+
+    model_config = {
+        "from_attributes": True
+    }
+
+# Login
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+
