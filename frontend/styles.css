@@ -309,4 +309,104 @@ hr {
     opacity: 0.85;
 }
 
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+
+.edit-button {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    padding: 8px 14px;
+
+    background-color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+
+.edit-button:hover {
+    opacity: 0.75;
+}
+
+.edit-title-input,
+.edit-description-input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 16px;
+}
+
+
+.edit-title-input {
+    margin-bottom: 12px;
+}
+
+
+.edit-description-input {
+    margin-bottom: 12px;
+
+    resize: vertical;
+}
+
+
+.edit-title-input:focus,
+.edit-description-input:focus {
+    outline: none;
+    border-color: #222;
+}
+
+
+.editor-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+}
+
+
+.save-button,
+.cancel-button {
+    border-radius: 6px;
+
+    padding: 8px 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.save-button {
+    border: none;
+
+    background-color: #222;
+    color: white;
+}
+
+
+.cancel-button {
+    border: 1px solid #ccc;
+
+    background-color: white;
+}
+
 
