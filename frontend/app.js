@@ -26,6 +26,21 @@ const registerMessage =
         "#register-message"
     );
 
+const registerSection =
+    document.querySelector(
+        "#register-section"
+    );
+
+const registerSubtitle =
+    document.querySelector(
+        "#register-subtitle"
+    );
+
+const showLoginLink =
+    document.querySelector(
+        "#show-login-link"
+    );
+
 
 // Login
 const loginForm =
@@ -46,6 +61,21 @@ const loginPasswordInput =
 const loginMessage =
     document.querySelector(
         "#login-message"
+    );
+
+const loginSection =
+    document.querySelector(
+        "#login-section"
+    );
+
+const loginSubtitle =
+    document.querySelector(
+        "#login-subtitle"
+    );
+
+const showRegisterLink =
+    document.querySelector(
+        "#show-register-link"
     );
 
 
@@ -107,9 +137,9 @@ const taskList =
     );
 
 
-// IMPORTANT:
-// These must come AFTER registerForm,
-// loginForm and taskForm are declared.
+// Submit buttons
+// These must come AFTER their forms
+// have been declared.
 
 const registerButton =
     registerForm.querySelector(
@@ -231,6 +261,66 @@ function getErrorMessage(
 
 
 // ======================================================
+// AUTH FORM SWITCHING
+// ======================================================
+
+function showRegisterForm() {
+    registerSection.classList.remove(
+        "hidden"
+    );
+
+    registerSubtitle.classList.remove(
+        "hidden"
+    );
+
+
+    loginSection.classList.add(
+        "hidden"
+    );
+
+    loginSubtitle.classList.add(
+        "hidden"
+    );
+
+
+    clearMessage(
+        loginMessage
+    );
+
+
+    registerEmailInput.focus();
+}
+
+
+function showLoginForm() {
+    loginSection.classList.remove(
+        "hidden"
+    );
+
+    loginSubtitle.classList.remove(
+        "hidden"
+    );
+
+
+    registerSection.classList.add(
+        "hidden"
+    );
+
+    registerSubtitle.classList.add(
+        "hidden"
+    );
+
+
+    clearMessage(
+        registerMessage
+    );
+
+
+    loginEmailInput.focus();
+}
+
+
+// ======================================================
 // AUTHENTICATION HELPERS
 // ======================================================
 
@@ -241,7 +331,9 @@ function getAccessToken() {
 }
 
 
-function showAuthView() {
+function showAuthView(
+    formToShow = "register"
+) {
     authView.classList.remove(
         "hidden"
     );
@@ -250,18 +342,30 @@ function showAuthView() {
         "hidden"
     );
 
-    clearMessage(loginMessage);
+
+    if (formToShow === "login") {
+        showLoginForm();
+
+        return;
+    }
+
+
+    showRegisterForm();
 }
 
 
-function clearSession() {
+function clearSession(
+    formToShow = "login"
+) {
     sessionStorage.removeItem(
         "access_token"
     );
 
+
     taskList.innerHTML = "";
 
     currentUserEmail.textContent = "";
+
 
     clearMessage(
         taskFormMessage
@@ -271,7 +375,10 @@ function clearSession() {
         tasksMessage
     );
 
-    showAuthView();
+
+    showAuthView(
+        formToShow
+    );
 }
 
 
@@ -284,7 +391,9 @@ async function authenticatedFetch(
 
 
     if (!token) {
-        clearSession();
+        clearSession(
+            "login"
+        );
 
         return null;
     }
@@ -312,7 +421,9 @@ async function authenticatedFetch(
         response.status === 401 ||
         response.status === 403
     ) {
-        clearSession();
+        clearSession(
+            "login"
+        );
 
         return null;
     }
@@ -632,7 +743,9 @@ async function showDashboard(user) {
 
 
 function handleLogout() {
-    clearSession();
+    clearSession(
+        "login"
+    );
 }
 
 
@@ -699,7 +812,9 @@ async function handleCreateTask(
 
 
     if (!token) {
-        clearSession();
+        clearSession(
+            "login"
+        );
 
         return;
     }
@@ -1614,6 +1729,30 @@ taskForm.addEventListener(
 );
 
 
+// Switch Register → Login
+
+showLoginLink.addEventListener(
+    "click",
+    function (event) {
+        event.preventDefault();
+
+        showLoginForm();
+    }
+);
+
+
+// Switch Login → Register
+
+showRegisterLink.addEventListener(
+    "click",
+    function (event) {
+        event.preventDefault();
+
+        showRegisterForm();
+    }
+);
+
+
 // ======================================================
 // APPLICATION INITIALIZATION
 // ======================================================
@@ -1632,7 +1771,12 @@ async function initializeApp() {
     }
 
 
-    showAuthView();
+    // A visitor who is not logged in
+    // sees registration first.
+
+    showAuthView(
+        "register"
+    );
 }
 
 

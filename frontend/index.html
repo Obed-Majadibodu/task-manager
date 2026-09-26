@@ -13,9 +13,9 @@
     <title>Task Manager</title>
 
     <link
-    rel="stylesheet"
-    href="styles.css">
-
+        rel="stylesheet"
+        href="styles.css"
+    >
 </head>
 
 <body>
@@ -24,212 +24,296 @@
 
         <div class="app-card">
 
-    <section id="auth-view">
+            <!-- ======================================
+                 AUTHENTICATION VIEW
+            ======================================= -->
 
-        <h1>Task Manager</h1>
+            <section id="auth-view">
 
-        <p class="subtitle">
-            Create an account or log in to manage your tasks.
-        </p>
+                <div class="auth-header">
 
+                    <h1>Task Manager</h1>
 
-        <section class="auth-section">
-
-            <h2>Create Account</h2>
-
-            <form id="register-form">
-
-                <div class="form-group">
-                    <label for="register-email">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="register-email"
-                        placeholder="you@example.com"
-                        required
+                    <!-- Register subtitle -->
+                    <p
+                        id="register-subtitle"
+                        class="subtitle"
                     >
+                        Create an account to manage your tasks.
+                        Already have an account?
+                        <a
+                            href="#"
+                            id="show-login-link"
+                            class="auth-link"
+                        >
+                            Log in
+                        </a>
+                    </p>
+
+
+                    <!-- Login subtitle -->
+                    <p
+                        id="login-subtitle"
+                        class="subtitle hidden"
+                    >
+                        Log in to manage your tasks.
+                        Don't have an account?
+                        <a
+                            href="#"
+                            id="show-register-link"
+                            class="auth-link"
+                        >
+                            Create an account
+                        </a>
+                    </p>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="register-password">
-                        Password
-                    </label>
 
-                    <input
-                        type="password"
-                        id="register-password"
-                        placeholder="At least 8 characters"
-                        minlength="8"
-                        required
-                    >
-                </div>
+                <!-- ==================================
+                     REGISTER
+                =================================== -->
 
-                <button
-                    type="submit"
-                    class="primary-button"
+                <section
+                    id="register-section"
+                    class="auth-section"
                 >
-                    Create Account
-                </button>
 
-            </form>
+                    <h2>Create Account</h2>
 
-            <p
-                id="register-message"
-                class="form-message"
-            ></p>
+                    <form id="register-form">
 
-        </section>
+                        <div class="form-group">
+
+                            <label for="register-email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="register-email"
+                                placeholder="you@example.com"
+                                required
+                            >
+
+                        </div>
 
 
-        <hr>
+                        <div class="form-group">
+
+                            <label for="register-password">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="register-password"
+                                placeholder="At least 8 characters"
+                                minlength="8"
+                                required
+                            >
+
+                        </div>
 
 
-        <section class="auth-section">
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Create Account
+                        </button>
 
-            <h2>Login</h2>
+                    </form>
 
-            <form id="login-form">
 
-                <div class="form-group">
-                    <label for="login-email">
-                        Email
-                    </label>
+                    <p
+                        id="register-message"
+                        class="form-message"
+                    ></p>
 
-                    <input
-                        type="email"
-                        id="login-email"
-                        required
-                    >
-                </div>
+                </section>
 
-                <div class="form-group">
-                    <label for="login-password">
-                        Password
-                    </label>
 
-                    <input
-                        type="password"
-                        id="login-password"
-                        required
-                    >
-                </div>
+                <!-- ==================================
+                     LOGIN
+                =================================== -->
 
-                <button
-                    type="submit"
-                    class="primary-button"
+                <section
+                    id="login-section"
+                    class="auth-section hidden"
                 >
-                    Login
-                </button>
 
-            </form>
+                    <h2>Login</h2>
 
-            <p
-                id="login-message"
-                class="form-message"
-            ></p>
+                    <form id="login-form">
 
-        </section>
+                        <div class="form-group">
 
-    </section>
+                            <label for="login-email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="login-email"
+                                placeholder="you@example.com"
+                                required
+                            >
+
+                        </div>
 
 
-    <section
-        id="dashboard-view"
-        class="hidden"
-    >
+                        <div class="form-group">
 
-        <div class="dashboard-header">
+                            <label for="login-password">
+                                Password
+                            </label>
 
-            <div>
-                <h1>Task Manager</h1>
+                            <input
+                                type="password"
+                                id="login-password"
+                                placeholder="Enter your password"
+                                required
+                            >
 
-                <p id="current-user-email"></p>
-            </div>
+                        </div>
 
-            <button
-                id="logout-button"
-                class="secondary-button"
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Login
+                        </button>
+
+                    </form>
+
+
+                    <p
+                        id="login-message"
+                        class="form-message"
+                    ></p>
+
+                </section>
+
+            </section>
+
+
+            <!-- ======================================
+                 DASHBOARD VIEW
+            ======================================= -->
+
+            <section
+                id="dashboard-view"
+                class="hidden"
             >
-                Logout
-            </button>
+
+                <div class="dashboard-header">
+
+                    <div>
+
+                        <h1>Task Manager</h1>
+
+                        <p id="current-user-email"></p>
+
+                    </div>
+
+
+                    <button
+                        id="logout-button"
+                        class="secondary-button"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+
+                <!-- ==================================
+                     ADD TASK
+                =================================== -->
+
+                <section class="task-form-section">
+
+                    <h2>Add Task</h2>
+
+                    <form id="task-form">
+
+                        <div class="form-group">
+
+                            <label for="task-title">
+                                Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="task-title"
+                                maxlength="200"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="task-description">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="task-description"
+                                maxlength="1000"
+                                rows="4"
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Add Task
+                        </button>
+
+                    </form>
+
+
+                    <p
+                        id="task-form-message"
+                        class="form-message"
+                    ></p>
+
+                </section>
+
+
+                <!-- ==================================
+                     TASK LIST
+                =================================== -->
+
+                <section class="tasks-section">
+
+                    <h2>Your Tasks</h2>
+
+                    <p
+                        id="tasks-message"
+                        class="form-message"
+                    ></p>
+
+                    <div id="task-list"></div>
+
+                </section>
+
+            </section>
 
         </div>
 
-
-        <section class="task-form-section">
-
-            <h2>Add Task</h2>
-
-            <form id="task-form">
-
-                <div class="form-group">
-                    <label for="task-title">
-                        Title
-                    </label>
-
-                    <input
-                        type="text"
-                        id="task-title"
-                        maxlength="200"
-                        required
-                    >
-                </div>
-
-
-                <div class="form-group">
-                    <label for="task-description">
-                        Description
-                    </label>
-
-                    <textarea
-                        id="task-description"
-                        maxlength="1000"
-                        rows="4"
-                    ></textarea>
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="primary-button"
-                >
-                    Add Task
-                </button>
-
-            </form>
-
-            <p
-                id="task-form-message"
-                class="form-message"
-            ></p>
-
-        </section>
-
-
-        <section class="tasks-section">
-
-            <h2>Your Tasks</h2>
-
-            <p
-                id="tasks-message"
-                class="form-message"
-            ></p>
-
-            <div id="task-list"></div>
-
-        </section>
-
-    </section>
-
-</div>
-
     </main>
+
 
     <script src="app.js"></script>
 
 </body>
 
 </html>
-
