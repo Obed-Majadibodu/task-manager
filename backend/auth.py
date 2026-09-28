@@ -1,10 +1,7 @@
 import jwt
 
 from fastapi import Depends, HTTPException
-from fastapi.security import (
-    HTTPAuthorizationCredentials,
-    HTTPBearer,
-)
+from fastapi.security import (HTTPAuthorizationCredentials, HTTPBearer,)
 from sqlalchemy.orm import Session
 
 from backend import crud
@@ -13,7 +10,6 @@ from backend.security import decode_access_token
 
 
 bearer_scheme = HTTPBearer()
-
 
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(
